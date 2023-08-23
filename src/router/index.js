@@ -1,25 +1,40 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+ import { createRouter, createWebHashHistory } from 'vue-router'
+ import Dashboard from '@/pages/Dashboard.vue'
+ import AboutContent from '@/pages/AboutContent.vue'
+ import NotFound from '@/pages/NotFound.vue'
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+ const routes = [{
+         path: '/dashboard',
+         name: 'Dashboard',
+         component: Dashboard
+     },
+     {
+         path: '/about',
+         name: 'about',
+         component: AboutContent
+             // route level code-splitting
+             // this generates a separate chunk (about.[hash].js) for this route
+             // which is lazy-loaded when the route is visited.
+             //   component: () =>
+             //    import ( /* webpackChunkName: "about" */ '../views/AboutView.vue')
+     },
+     {
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
+         path: '/404',
+         name: 'NotFound',
+         component: NotFound
+     },
+     {
 
-export default router
+         path: '/:catchAll(.*)',
+         redirect: '/404'
+
+     }
+ ]
+
+ const router = createRouter({
+     history: createWebHashHistory(),
+     routes
+ })
+
+ export default router
